@@ -15,6 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import model.Order;
 import repository.OrderRepository;
 
+//SQL: CREATE TABLE IF NOT EXISTS `order` (`id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, `customer` int(11) NOT NULL, `date` timestamp NULL DEFAULT NULL, `payment` int(11) DEFAULT NULL );
 // taskkill /f /im javaw.exe
 @EntityScan("model")
 @EnableJpaRepositories("repository")	//enables to have a separate package for repos
