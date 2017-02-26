@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import model.Order;
@@ -17,10 +18,12 @@ import repository.OrderRepository;
 
 //SQL: CREATE TABLE IF NOT EXISTS `order` (`id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, `customer` int(11) NOT NULL, `date` timestamp NULL DEFAULT NULL, `payment` int(11) DEFAULT NULL );
 // taskkill /f /im javaw.exe
+//Swagger home http://localhost:8080/swagger-ui.html
 @EntityScan("model")
 @EnableJpaRepositories("repository")	//enables to have a separate package for repos
 @ComponentScan({"controller"})			//use componentscan if your @RestController locates in another package
 @SpringBootApplication
+@Import (SwaggerConfig.class)
 public class Application {
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 

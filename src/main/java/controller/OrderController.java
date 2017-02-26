@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,5 +31,14 @@ public class OrderController {
 	public Iterable<Order> test(@RequestParam(value="name", defaultValue="World") String name)  {
 		log.info("orders...");
 	    return repository.findAll();
+	}
+	
+	@RestController
+	public class CustomController {
+	 
+    @RequestMapping(value = "/custom", method = RequestMethod.POST)
+	    public String custom() {
+	        return "custom";
+	    }
 	}
 }
