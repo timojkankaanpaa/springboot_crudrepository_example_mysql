@@ -3,6 +3,9 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 /**
@@ -48,6 +51,12 @@ public class Order implements Serializable {
 		return this.date;
 	}
 
+	
+	public String getDateString() {
+		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyy");
+		return format1.format(date.getTime());
+	}
+	
 	public void setDate(Timestamp date) {
 		this.date = date;
 	}
@@ -62,7 +71,10 @@ public class Order implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", customer=" + customer + ", date=" + date + ", payment=" + payment + "]";
+		Calendar start = Calendar.getInstance();
+		start.setTimeInMillis(date.getTime() );
+		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyy");
+		return "Order [id=" + id + ", customer=" + customer + ", date=" + format1.format(start.getTime()) + ", payment=" + payment + "]";
 	}
 
 }
