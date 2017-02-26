@@ -28,17 +28,12 @@ public class OrderController {
     }
     
 	@RequestMapping("/orders")
-	public Iterable<Order> test(@RequestParam(value="name", defaultValue="World") String name)  {
-		log.info("orders...");
+	public Iterable<Order> getOrders(@RequestParam(value="name", defaultValue="1") String name)  {
 	    return repository.findAll();
 	}
 	
-	@RestController
-	public class CustomController {
-	 
-    @RequestMapping(value = "/custom", method = RequestMethod.POST)
-	    public String custom() {
-	        return "custom";
-	    }
-	}
+	@RequestMapping("/order")
+	public Order getOrder(@RequestParam(value="id", defaultValue="7") int id)  {
+	    return repository.findOne(id);
+	}	
 }

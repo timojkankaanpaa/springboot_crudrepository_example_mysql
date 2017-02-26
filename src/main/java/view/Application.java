@@ -1,5 +1,9 @@
 package view;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 
 import org.slf4j.Logger;
@@ -38,11 +42,15 @@ public class Application {
 			// save a couple of customers
 			Order order = new Order();
 			order.setCustomer(1);
-			java.util.Date utilDate = new java.util.Date();
+			Instant instant = Instant.now(); //fix timezone
+			ZoneId zoneId = ZoneId.of("Europe/Helsinki");
+			ZonedDateTime zdt = ZonedDateTime.ofInstant( instant , zoneId );
+			order.setDate(new Timestamp(zdt.toInstant().getEpochSecond() * 1000L));	  			
+			/*java.util.Date utilDate = new java.util.Date();
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(utilDate);
 			cal.set(Calendar.MILLISECOND, 0);		
-			order.setDate(new java.sql.Timestamp(cal.getTimeInMillis()));
+			order.setDate(new java.sql.Timestamp(cal.getTimeInMillis()));*/
 			order.setPayment(1);
 			//repository.delete(1);
 			repository.save(order);

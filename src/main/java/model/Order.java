@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -53,8 +54,11 @@ public class Order implements Serializable {
 
 	
 	public String getDateString() {
-		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyy");
-		return format1.format(date.getTime());
+		ZoneId z = ZoneId.of( "Europe/Helsinki" );
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyy HH:mm:ss");
+		return format1.format(calendar.getTime());
 	}
 	
 	public void setDate(Timestamp date) {
