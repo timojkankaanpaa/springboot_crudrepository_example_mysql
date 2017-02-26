@@ -19,15 +19,15 @@ import repository.OrderRepository;
 // taskkill /f /im javaw.exe
 @EntityScan("model")
 @EnableJpaRepositories("repository")	//enables to have a separate package for repos
+@ComponentScan({"controller"})			//use componentscan if your @RestController locates in another package
 @SpringBootApplication
 public class Application {
-
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class);
 	}
-	
+
 	
 	@Bean
 	public CommandLineRunner demo(repository.OrderRepository repository) {
